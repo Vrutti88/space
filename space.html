@@ -1,126 +1,198 @@
-const spaceFacts = {
-    "spaceFacts": [
-        {
-            "id": 1,
-            "fact": "One day on Venus is longer than one year on Venus due to its slow rotation.",
-            "category": "planets"
-        },
-        {
-            "id": 2,
-            "fact": "The Sun makes up 99.86% of the mass of our solar system.",
-            "category": "stars"
-        },
-        {
-            "id": 3,
-            "fact": "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-            "category": "universe"
-        },
-        {
-            "id": 4,
-            "fact": "The footprints left by Apollo astronauts on the Moon will last for at least 100 million years.",
-            "category": "space exploration"
-        },
-        {
-            "id": 5,
-            "fact": "A day on Mars is about 24 hours and 37 minutes long.",
-            "category": "planets"
-        },
-        {
-            "id": 6,
-            "fact": "The largest known star, UY Scuti, is more than 1,700 times larger than our Sun.",
-            "category": "stars"
-        },
-        {
-            "id": 7,
-            "fact": "There is a planet made of diamonds, called 55 Cancri e.",
-            "category": "exoplanets"
-        },
-        {
-            "id": 8,
-            "fact": "The space between galaxies is completely silent because sound waves cannot travel through a vacuum.",
-            "category": "physics"
-        },
-        {
-            "id": 9,
-            "fact": "Saturn's rings are mostly made up of water ice and rock.",
-            "category": "planets"
-        },
-        {
-            "id": 10,
-            "fact": "The Milky Way galaxy is moving through space at approximately 600 km/s.",
-            "category": "galaxies"
-        },
-        {
-            "id": 11,
-            "fact": "Astronauts grow approximately 5 cm (2 inches) taller in space.",
-            "category": "space exploration"
-        },
-        {
-            "id": 12,
-            "fact": "The International Space Station travels at a speed of about 7.66 kilometers per second.",
-            "category": "space exploration"
-        },
-        {
-            "id": 13,
-            "fact": "Jupiter's Great Red Spot is shrinking, but it's still larger than Earth.",
-            "category": "planets"
-        },
-        {
-            "id": 14,
-            "fact": "Light from the Sun takes about 8 minutes to reach Earth.",
-            "category": "physics"
-        },
-        {
-            "id": 15,
-            "fact": "Black holes can be as small as one atom but have the mass of a large mountain.",
-            "category": "black holes"
-        },
-        {
-            "id": 16,
-            "fact": "The temperature in the void of space is -270.45 degrees Celsius (-454.81 Fahrenheit).",
-            "category": "physics"
-        },
-        {
-            "id": 17,
-            "fact": "There are billions of galaxies in the observable universe.",
-            "category": "universe"
-        },
-        {
-            "id": 18,
-            "fact": "The first human to journey into space was Yuri Gagarin in 1961.",
-            "category": "space exploration"
-        },
-        {
-            "id": 19,
-            "fact": "Neutron stars can spin at a rate of 600 rotations per second.",
-            "category": "stars"
-        },
-        {
-            "id": 20,
-            "fact": "The largest known asteroid is Ceres, which is about 940 kilometers in diameter.",
-            "category": "asteroids"
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Facts App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-    ]
-};
 
-let currentFactIndex = -1;
+        .container {
+            text-align: center;
+            max-width: 800px;
+        }
 
-function displayRandomFact() {
-    const facts = spaceFacts.spaceFacts;
-    let newIndex;
-    do {
-        newIndex = Math.floor(Math.random() * facts.length);
-    } while (newIndex === currentFactIndex && facts.length > 1);
-    
-    currentFactIndex = newIndex;
-    const fact = facts[currentFactIndex];
-    
-    document.getElementById('fact-text').textContent = fact.fact;
-    document.getElementById('category').textContent = `Category: ${fact.category}`;
-}
+        .fact-card {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-// Initial fact display
-displayRandomFact();
+        #fact-text {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
 
-// Event listener for the button
-document.getElementById('next-fact').addEventListener('click', displayRandomFact);
+        #category {
+            color: #00ff88;
+            font-style: italic;
+            margin: 0;
+        }
+
+        button {
+            background-color: #00ff88;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Amazing Space Facts</h1>
+        <div class="fact-card">
+            <p id="fact-text"></p>
+            <p id="category"></p>
+        </div>
+        <button id="next-fact">Next Fact</button>
+    </div>
+    <script>
+        const spaceFacts = {
+            "spaceFacts": [
+                {
+                    "id": 1,
+                    "fact": "One day on Venus is longer than one year on Venus due to its slow rotation.",
+                    "category": "planets"
+                },
+                {
+                    "id": 2,
+                    "fact": "The Sun makes up 99.86% of the mass of our solar system.",
+                    "category": "stars"
+                },
+                {
+                    "id": 3,
+                    "fact": "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                    "category": "universe"
+                },
+                {
+                    "id": 4,
+                    "fact": "The footprints left by Apollo astronauts on the Moon will last for at least 100 million years.",
+                    "category": "space exploration"
+                },
+                {
+                    "id": 5,
+                    "fact": "A day on Mars is about 24 hours and 37 minutes long.",
+                    "category": "planets"
+                },
+                {
+                    "id": 6,
+                    "fact": "The largest known star, UY Scuti, is more than 1,700 times larger than our Sun.",
+                    "category": "stars"
+                },
+                {
+                    "id": 7,
+                    "fact": "There is a planet made of diamonds, called 55 Cancri e.",
+                    "category": "exoplanets"
+                },
+                {
+                    "id": 8,
+                    "fact": "The space between galaxies is completely silent because sound waves cannot travel through a vacuum.",
+                    "category": "physics"
+                },
+                {
+                    "id": 9,
+                    "fact": "Saturn's rings are mostly made up of water ice and rock.",
+                    "category": "planets"
+                },
+                {
+                    "id": 10,
+                    "fact": "The Milky Way galaxy is moving through space at approximately 600 km/s.",
+                    "category": "galaxies"
+                },
+                {
+                    "id": 11,
+                    "fact": "Astronauts grow approximately 5 cm (2 inches) taller in space.",
+                    "category": "space exploration"
+                },
+                {
+                    "id": 12,
+                    "fact": "The International Space Station travels at a speed of about 7.66 kilometers per second.",
+                    "category": "space exploration"
+                },
+                {
+                    "id": 13,
+                    "fact": "Jupiter's Great Red Spot is shrinking, but it's still larger than Earth.",
+                    "category": "planets"
+                },
+                {
+                    "id": 14,
+                    "fact": "Light from the Sun takes about 8 minutes to reach Earth.",
+                    "category": "physics"
+                },
+                {
+                    "id": 15,
+                    "fact": "Black holes can be as small as one atom but have the mass of a large mountain.",
+                    "category": "black holes"
+                },
+                {
+                    "id": 16,
+                    "fact": "The temperature in the void of space is -270.45 degrees Celsius (-454.81 Fahrenheit).",
+                    "category": "physics"
+                },
+                {
+                    "id": 17,
+                    "fact": "There are billions of galaxies in the observable universe.",
+                    "category": "universe"
+                },
+                {
+                    "id": 18,
+                    "fact": "The first human to journey into space was Yuri Gagarin in 1961.",
+                    "category": "space exploration"
+                },
+                {
+                    "id": 19,
+                    "fact": "Neutron stars can spin at a rate of 600 rotations per second.",
+                    "category": "stars"
+                },
+                {
+                    "id": 20,
+                    "fact": "The largest known asteroid is Ceres, which is about 940 kilometers in diameter.",
+                    "category": "asteroids"
+                }
+            ]
+        };
+
+        let currentFactIndex = -1;
+
+        function displayRandomFact() {
+            const facts = spaceFacts.spaceFacts;
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * facts.length);
+            } while (newIndex === currentFactIndex && facts.length > 1);
+            
+            currentFactIndex = newIndex;
+            const fact = facts[currentFactIndex];
+            
+            document.getElementById('fact-text').textContent = fact.fact;
+            document.getElementById('category').textContent = `Category: ${fact.category}`;
+        }
+
+        // Initial fact display
+        displayRandomFact();
+
+        // Event listener for the button
+        document.getElementById('next-fact').addEventListener('click', displayRandomFact);
+    </script>
+</body>
+</html>
